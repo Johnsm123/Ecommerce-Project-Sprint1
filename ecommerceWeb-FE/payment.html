@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PremiumCorner</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%);
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        background: linear-gradient(90deg, #0071ce, #a78bfa);
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid;
+        border-image: linear-gradient(45deg, #ffc107, #ff6f61) 1;
+      }
+
+      .logo a {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0;
+        flex-grow: 1;
+        max-width: 500px;
+        margin: 0 1rem;
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 0.6rem 1rem;
+        border-radius: 20px 0 0 20px;
+        border: none;
+        font-size: 1rem;
+        background: white;
+        color: #666;
+      }
+
+      .search-button {
+        padding: 0.6rem 1.5rem;
+        background-color: #ffc107;
+        color: #004080;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+
+      .search-button:hover {
+        background: linear-gradient(45deg, #ffc107, #ffb300);
+        box-shadow: 0 0 8px rgba(255, 193, 7, 0.5),
+          0 0 8px rgba(0, 113, 206, 0.3);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: #ffc107;
+        text-shadow: 0 0 4px rgba(255, 193, 7, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      .cart-count {
+        background-color: #ffc107;
+        color: #004080;
+        border-radius: 50%;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-left: 0.5rem;
+      }
+
+      .payment-dashboard {
+        max-width: 600px;
+        margin: 1.5rem auto;
+        padding: 1.5rem;
+        background: linear-gradient(45deg, #ffffff, #e6faf0);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid;
+        border-image: linear-gradient(45deg, #ff6f61, #a78bfa) 1;
+      }
+
+      .payment-dashboard h1 {
+        font-size: 1.8rem;
+        color: #004080;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .payment-methods {
+        margin-top: 1.5rem;
+      }
+
+      .payment-option {
+        margin: 1rem 0;
+        text-align: left;
+        display: flex;
+        align-items: center;
+      }
+
+      .payment-option input[type="radio"] {
+        margin-right: 0.5rem;
+      }
+
+      .payment-option label {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .payment-option i {
+        font-size: 1.2rem;
+        color: #004080;
+        transition: color 0.3s;
+      }
+
+      .payment-option input[type="radio"]:checked + label i {
+        color: #ffc107;
+      }
+
+      .payment-details {
+        margin-top: 0.5rem;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 4px;
+        border: 1px solid #eee;
+        display: none;
+      }
+
+      .payment-details.active {
+        display: block;
+      }
+
+      .payment-details p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+
+      .payment-details label {
+        font-size: 0.9rem;
+        color: #333;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+
+      .payment-details input,
+      .payment-details select,
+      .payment-details textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .payment-details input[type="password"] {
+        letter-spacing: 2px;
+      }
+
+      .payment-details input[type="text"][placeholder="Enter Card Number"] {
+        letter-spacing: 2px;
+      }
+
+      .payment-details textarea {
+        resize: vertical;
+        min-height: 80px;
+        max-height: 200px;
+      }
+
+      .payment-details button {
+        padding: 0.8rem 2rem;
+        background-color: #ffc107;
+        color: #004080;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .payment-details button:hover {
+        background: linear-gradient(45deg, #ffc107, #ffb300);
+        box-shadow: 0 0 8px rgba(255, 193, 7, 0.5),
+          0 0 8px rgba(0, 113, 206, 0.3);
+      }
+
+      .qr-code {
+        max-width: 150px;
+        margin: 0.5rem 0;
+      }
+
+      #orderSummary {
+        margin-bottom: 1.5rem;
+      }
+
+      #orderSummary h2 {
+        font-size: 1.4rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-content {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(90deg, #004080, #a78bfa, #ff6f61);
+        color: white;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-links a:hover {
+        color: #ffc107;
+        text-shadow: 0 0 4px rgba(255, 193, 7, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 0.8rem;
+          padding: 0.8rem;
+        }
+
+        .search-bar {
+          flex-direction: row;
+          margin: 0;
+          width: 100%;
+        }
+
+        .search-bar input {
+          border-radius: 20px 0 0 20px;
+          width: 100%;
+        }
+
+        .search-button {
+          border-radius: 0 20px 20px 0;
+        }
+
+        .nav-links {
+          flex-direction: row;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        .payment-dashboard {
+          padding: 1rem;
+        }
+
+        .payment-dashboard h1 {
+          font-size: 1.4rem;
+        }
+
+        .payment-details input,
+        .payment-details select,
+        .payment-details textarea {
+          font-size: 0.8rem;
+        }
+
+        .qr-code {
+          max-width: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="#">PremiumCorner</a></div>
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/products.html">Shop</a></li>
+          <li>
+            <a href="/cart.html">Cart <span class="cart-count">7</span></a>
+          </li>
+          <li><a href="/account.html">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="payment-dashboard">
+        <h1>Payment Dashboard</h1>
+        <section id="orderSummary">
+          <h2>Order Summary</h2>
+          <p>Total: $0.00</p>
+        </section>
+
+        <section class="payment-methods">
+          <h3>Select Payment Method</h3>
+          <div class="payment-option">
+            <input
+              type="radio"
+              name="payment-method"
+              id="upi"
+              onchange="togglePaymentDetails()"
+            />
+            <label for="upi"><i class="fa-solid fa-mobile-alt"></i> UPI</label>
+            <div class="payment-details">
+              <p>Scan the QR code or enter UPI ID:</p>
+              <img class="qr-code" src="/images/qr.webp" alt="UPI QR Code" />
+              <label>UPI ID:</label>
+              <input type="text" id="upi-id" placeholder="Enter UPI ID" />
+              <button onclick="validateUPI()">Pay with UPI</button>
+            </div>
+          </div>
+
+          <div class="payment-option">
+            <input
+              type="radio"
+              name="payment-method"
+              id="card"
+              onchange="togglePaymentDetails()"
+            />
+            <label for="card"
+              ><i class="fa-solid fa-credit-card"></i> Credit/Debit Card</label
+            >
+            <div class="payment-details">
+              <label>Card Number:</label>
+              <input
+                type="text"
+                id="card-number"
+                placeholder="Enter Card Number"
+                maxlength="19"
+                oninput="formatCardNumber(this)"
+              />
+              <label>Expiry Date:</label>
+              <input type="text" id="card-expiry" placeholder="MM/YY" />
+              <label>CVV:</label>
+              <input
+                type="text"
+                id="card-cvv"
+                placeholder="Enter CVV"
+                maxlength="3"
+              />
+              <label>PIN:</label>
+              <input
+                type="password"
+                id="card-pin"
+                placeholder="Enter PIN"
+                maxlength="4"
+              />
+              <button onclick="validateCard()">Pay with Card</button>
+            </div>
+          </div>
+
+          <div class="payment-option">
+            <input
+              type="radio"
+              name="payment-method"
+              id="netbanking"
+              onchange="togglePaymentDetails()"
+            />
+            <label for="netbanking"
+              ><i class="fa-solid fa-university"></i> Net Banking</label
+            >
+            <div class="payment-details">
+              <label>Select Bank:</label>
+              <select id="bank-select">
+                <option>Select a bank</option>
+                <option>State Bank of India</option>
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+              </select>
+              <label>IFSC Code:</label>
+              <input
+                type="text"
+                id="ifsc-code"
+                placeholder="Enter IFSC Code"
+                maxlength="11"
+              />
+              <label>Account Number:</label>
+              <input
+                type="text"
+                id="account-number"
+                placeholder="Enter Account Number"
+              />
+              <label>Account Holder Name:</label>
+              <input
+                type="text"
+                id="account-holder"
+                placeholder="Enter Account Holder Name"
+              />
+              <button onclick="validateNetBanking()">
+                Pay with Net Banking
+              </button>
+            </div>
+          </div>
+
+          <div class="payment-option">
+            <input
+              type="radio"
+              name="payment-method"
+              id="cod"
+              onchange="togglePaymentDetails()"
+            />
+            <label for="cod"
+              ><i class="fa-solid fa-truck"></i> Cash on Delivery (COD)</label
+            >
+            <div class="payment-details">
+              <p>Pay when you receive the order at your doorstep.</p>
+              <label>Delivery Address:</label>
+              <textarea
+                id="delivery-address"
+                placeholder="Enter Delivery Address"
+              ></textarea>
+              <button onclick="validateCOD()">Confirm COD</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer-content">
+      <p>© 2025 QuickCart. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </footer>
+
+    <script>
+      function formatCardNumber(input) {
+        let value = input.value.replace(/\D/g, "");
+        let formatted = "";
+        for (let i = 0; i < value.length; i++) {
+          if (i > 0 && i % 4 === 0) formatted += " ";
+          formatted += value[i];
+        }
+        input.value = formatted;
+      }
+
+      function togglePaymentDetails() {
+        const paymentDetails = document.querySelectorAll(".payment-details");
+        const radioButtons = document.querySelectorAll(
+          'input[name="payment-method"]'
+        );
+
+        paymentDetails.forEach((detail) => {
+          detail.classList.remove("active");
+        });
+
+        radioButtons.forEach((radio) => {
+          if (radio.checked) {
+            const details =
+              radio.parentElement.querySelector(".payment-details");
+            if (details) {
+              details.classList.add("active");
+            }
+          }
+        });
+      }
+
+      function validateUPI() {
+        const upiId = document.getElementById("upi-id").value.trim();
+        if (!upiId) {
+          alert("Please enter your UPI ID.");
+          return;
+        }
+        window.location.href = "confirmation.html";
+      }
+
+      function validateCard() {
+        const cardNumber = document.getElementById("card-number").value.trim();
+        const expiry = document.getElementById("card-expiry").value.trim();
+        const cvv = document.getElementById("card-cvv").value.trim();
+        const pin = document.getElementById("card-pin").value.trim();
+
+        const cardNumberRegex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+        const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        const cvvRegex = /^\d{3}$/;
+        const pinRegex = /^\d{4}$/;
+
+        if (!cardNumber || !expiry || !cvv || !pin) {
+          alert(
+            "Please fill in all fields: Card Number, Expiry Date, CVV, and PIN."
+          );
+          return;
+        }
+
+        if (!cardNumberRegex.test(cardNumber)) {
+          alert("Card Number must be 16 digits (e.g., 1234 5678 9012 3456).");
+          return;
+        }
+
+        if (!expiryRegex.test(expiry)) {
+          alert("Expiry Date must be in MM/YY format (e.g., 12/25).");
+          return;
+        }
+
+        if (!cvvRegex.test(cvv)) {
+          alert("CVV must be 3 digits.");
+          return;
+        }
+
+        if (!pinRegex.test(pin)) {
+          alert("PIN must be 4 digits.");
+          return;
+        }
+
+        window.location.href = "confirmation.html";
+      }
+
+      function validateNetBanking() {
+        const bank = document.getElementById("bank-select").value;
+        const ifsc = document.getElementById("ifsc-code").value.trim();
+        const accountNumber = document
+          .getElementById("account-number")
+          .value.trim();
+        const accountHolder = document
+          .getElementById("account-holder")
+          .value.trim();
+
+        const ifscRegex = /^[A-Z]{4}0\d{6}$/;
+        const accountNumberRegex = /^\d{9,18}$/;
+
+        if (
+          bank === "Select a bank" ||
+          !ifsc ||
+          !accountNumber ||
+          !accountHolder
+        ) {
+          alert(
+            "Please fill in all fields: Select Bank, IFSC Code, Account Number, and Account Holder Name."
+          );
+          return;
+        }
+
+        if (!ifscRegex.test(ifsc)) {
+          alert("IFSC Code must be 11 characters (e.g., ABCD0123456).");
+          return;
+        }
+
+        if (!accountNumberRegex.test(accountNumber)) {
+          alert("Account Number must be between 9 and 18 digits.");
+          return;
+        }
+
+        window.location.href = "confirmation.html";
+      }
+
+      function validateCOD() {
+        const address = document
+          .getElementById("delivery-address")
+          .value.trim();
+        if (!address) {
+          alert("Please enter your Delivery Address.");
+          return;
+        }
+        window.location.href = "confirmation.html";
+      }
+    </script>
+  </body>
+</html>

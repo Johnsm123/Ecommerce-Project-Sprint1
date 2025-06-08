@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PremiumCorner - Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(
+          135deg,
+          #fffde7 0%,
+          #e3f2fd 50%,
+          #f3e5f5 75%,
+          #e8f5e9 100%
+        );
+        position: relative;
+        animation: backgroundShift 10s infinite alternate ease-in-out;
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+      }
+
+      /* Custom scrollbar styling for WebKit browsers (Chrome, Safari) */
+      body::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      body::-webkit-scrollbar-track {
+        background: #fffde7;
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #ff6f61, #f9a825, #4a90e2, #8e24aa);
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #8e24aa, #4a90e2, #f9a825, #ff6f61);
+      }
+
+      /* Custom scrollbar styling for Firefox */
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #ff6f61 #fffde7;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(74, 144, 226, 0.2),
+          transparent 70%
+        );
+        z-index: 1;
+      }
+
+      @keyframes backgroundShift {
+        0% {
+          background: linear-gradient(
+            135deg,
+            #fffde7 0%,
+            #e3f2fd 50%,
+            #f3e5f5 75%,
+            #e8f5e9 100%
+          );
+        }
+        100% {
+          background: linear-gradient(
+            135deg,
+            #e8f5e9 0%,
+            #f3e5f5 50%,
+            #e3f2fd 75%,
+            #fffde7 100%
+          );
+        }
+      }
+
+      .background-arts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .background-arts svg {
+        position: absolute;
+        opacity: 0.2;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+      }
+
+      .cart-icon {
+        top: 10%;
+        left: 5%;
+        width: 50px;
+        height: 50px;
+        color: #ff6f61;
+        animation: float 6s infinite ease-in-out;
+      }
+
+      .user-icon {
+        top: 50%;
+        left: 10%;
+        width: 60px;
+        height: 60px;
+        color: #f9a825;
+        animation: float 8s infinite ease-in-out 1s;
+      }
+
+      .chart-icon {
+        top: 20%;
+        right: 5%;
+        width: 70px;
+        height: 70px;
+        color: #4a90e2;
+        animation: float 7s infinite ease-in-out 0.5s;
+      }
+
+      .lock-icon {
+        top: 60%;
+        right: 10%;
+        width: 50px;
+        height: 50px;
+        color: #8e24aa;
+        animation: float 5s infinite ease-in-out 2s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        background: linear-gradient(90deg, #ff6f61, #f9a825, #4a90e2, #8e24aa);
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid;
+        border-image: linear-gradient(45deg, #ffeb3b, #26c6da, #ab47bc) 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo a {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0;
+        flex-grow: 1;
+        max-width: 500px;
+        margin: 0 1rem;
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 0.6rem 1rem;
+        border-radius: 20px 0 0 20px;
+        border: none;
+        font-size: 1rem;
+        background: white;
+        color: #666;
+      }
+
+      .search-button {
+        padding: 0.6rem 1.5rem;
+        background: linear-gradient(45deg, #ffeb3b, #ef5350, #42a5f5);
+        color: white;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+
+      .search-button:hover {
+        background: linear-gradient(45deg, #42a5f5, #ef5350, #ffeb3b);
+        box-shadow: 0 0 8px rgba(255, 235, 59, 0.5),
+          0 0 8px rgba(239, 83, 80, 0.3);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: #26c6da;
+        text-shadow: 0 0 4px rgba(38, 198, 218, 0.5),
+          0 0 4px rgba(171, 71, 188, 0.3);
+      }
+
+      .login-section {
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+        background: rgba(240, 255, 252, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid;
+        border-image: linear-gradient(45deg, #ffeb3b, #26c6da, #ab47bc) 1;
+      }
+
+      .login-section h2 {
+        font-size: 1.8rem;
+        color: #ff6f61;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .login-form label {
+        font-size: 1rem;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .login-form input {
+        padding: 0.6rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        color: #666;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .login-form input:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+      }
+
+      .login-button {
+        padding: 0.6rem;
+        background: linear-gradient(45deg, #ef5350, #42a5f5, #66bb6a);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .login-button:hover {
+        background: linear-gradient(45deg, #66bb6a, #42a5f5, #ef5350);
+        box-shadow: 0 0 8px rgba(102, 187, 106, 0.5);
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .signup-link a {
+        color: #8e24aa;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .signup-link a:hover {
+        color: #26c6da;
+        text-shadow: 0 0 4px rgba(38, 198, 218, 0.3);
+      }
+
+      .footer-content {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(90deg, #ff6f61, #f9a825, #4a90e2, #8e24aa);
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-links a:hover {
+        color: #26c6da;
+        text-shadow: 0 0 4px rgba(38, 198, 218, 0.5),
+          0 0 4px rgba(171, 71, 188, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 0.8rem;
+          padding: 0.8rem;
+        }
+
+        .search-bar {
+          flex-direction: row;
+          margin: 0;
+          width: 100%;
+        }
+
+        .search-bar input {
+          border-radius: 20px 0 0 20px;
+          width: 100%;
+        }
+
+        .search-button {
+          border-radius: 0 20px 20px 0;
+        }
+
+        .nav-links {
+          flex-direction: row;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        .login-section {
+          margin: 1rem;
+          padding: 1rem;
+        }
+
+        .background-arts svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-arts">
+      <!-- Shopping Cart Icon -->
+      <svg class="cart-icon" viewBox="0 0 24 24">
+        <path
+          d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 2h10l1.1 2H5.9L7 2zm-1 4h12l-1 10H6L5 6z"
+        />
+      </svg>
+      <!-- User Profile Icon -->
+      <svg class="user-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+      <!-- Chart Icon -->
+      <svg class="chart-icon" viewBox="0 0 24 24">
+        <path
+          d="M3 3h18v18H3V3zm4 14h2v-6H7v6zm4 0h2v-8h-2v8zm4 0h2v-4h-2v4z"
+        />
+      </svg>
+      <!-- Lock Icon -->
+      <svg class="lock-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-7h-1V8c0-2.76-2.24-5-5-5S7 5.24 7 8v2H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-6-5c1.66 0 3 1.34 3 3v2H9V8c0-1.66 1.34-3 3-3z"
+        />
+      </svg>
+    </div>
+
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="#">PremiumCorner</a></div>
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/products.html">Shop</a></li>
+          <li><a href="/cart.html">Cart (0)</a></li>
+          <li><a href="/account.html">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="login-section">
+        <h2>Login to Your Account</h2>
+        <div class="login-form">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+          <button type="submit" class="login-button">Login</button>
+          <p class="signup-link">
+            Don't have an account? <a href="/index.html">Sign up here.</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-content">
+      <p>© 2025 QuickCart. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </footer>
+    <script>
+      const loginForm = document.querySelector(".login-form");
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        // If all fields are filled, redirect to index.html
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>

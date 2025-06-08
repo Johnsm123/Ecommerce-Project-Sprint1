@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PremiumCorner - Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="/index.html">PremiumCorner</a>
+        </div>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for products, brands and more..."
+            onkeyup="searchProducts()"
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/products.html">Shop</a></li>
+          <li>
+            <a href="/cart.html">
+              Cart <span id="cartCount" class="cart-count">0</span>
+            </a>
+          </li>
+          <li><a href="/account.html">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Shop Fresh grocery</h1>
+          <p>Get the best deals with fast delivery.</p>
+          <a href="/products.html" class="cta-button">Shop Now</a>
+        </div>
+      </section>
+      <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+          <a href="/products.html" class="category-card">
+            <img src="/images/smartwatch.jpg" alt="Fruits" />
+            <h3>Future-Tech</h3>
+          </a>
+          <a href="/products-page2.html" class="category-card">
+            <img src="/images/gameConsole.webp" alt="Vegetables" />
+            <h3>Games-Entertainment</h3>
+          </a>
+          <a href="/products-page3.html" class="category-card">
+            <img src="/images/grocery.avif" alt="Dairy" />
+            <h3>Frozen-Goods & Groceries</h3>
+          </a>
+        </div>
+      </section>
+      <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div id="featuredProductContainer" class="product-grid"></div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 QuickCart. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>

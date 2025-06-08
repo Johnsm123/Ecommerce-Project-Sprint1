@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PremiumCorner - Products Page 2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #e9ecef 0%, #d4e8e2 100%);
+        position: relative;
+        animation: backgroundShift 10s infinite alternate ease-in-out;
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+      }
+
+      /* Custom scrollbar styling for WebKit browsers (Chrome, Safari) */
+      body::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      body::-webkit-scrollbar-track {
+        background: #e9ecef;
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #0d5c63, #c026d3);
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #c026d3, #0d5c63);
+      }
+
+      /* Custom scrollbar styling for Firefox */
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #0d5c63 #e9ecef;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(52, 211, 153, 0.2),
+          transparent 70%
+        );
+        z-index: 1;
+      }
+
+      @keyframes backgroundShift {
+        0% {
+          background: linear-gradient(135deg, #e9ecef 0%, #d4e8e2 100%);
+        }
+        100% {
+          background: linear-gradient(135deg, #d4e8e2 0%, #e9ecef 100%);
+        }
+      }
+
+      .background-arts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .background-arts svg {
+        position: absolute;
+        opacity: 0.2;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+      }
+
+      .cart-icon {
+        top: 10%;
+        left: 5%;
+        width: 50px;
+        height: 50px;
+        color: #0d5c63;
+        animation: float 6s infinite ease-in-out;
+      }
+
+      .user-icon {
+        top: 50%;
+        left: 10%;
+        width: 60px;
+        height: 60px;
+        color: #c026d3;
+        animation: float 8s infinite ease-in-out 1s;
+      }
+
+      .chart-icon {
+        top: 20%;
+        right: 5%;
+        width: 70px;
+        height: 70px;
+        color: #f472b6;
+        animation: float 7s infinite ease-in-out 0.5s;
+      }
+
+      .lock-icon {
+        top: 60%;
+        right: 10%;
+        width: 50px;
+        height: 50px;
+        color: #34d399;
+        animation: float 5s infinite ease-in-out 2s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        background: linear-gradient(90deg, #0d5c63, #c026d3);
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid;
+        border-image: linear-gradient(45deg, #f472b6, #34d399) 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo a {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0;
+        flex-grow: 1;
+        max-width: 500px;
+        margin: 0 1rem;
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 0.6rem 1rem;
+        border-radius: 20px 0 0 20px;
+        border: none;
+        font-size: 1rem;
+        background: white;
+        color: #666;
+      }
+
+      .search-button {
+        padding: 0.6rem 1.5rem;
+        background-color: #f472b6;
+        color: white;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+
+      .search-button:hover {
+        background: linear-gradient(45deg, #f472b6, #db2777);
+        box-shadow: 0 0 8px rgba(244, 114, 182, 0.5),
+          0 0 8px rgba(0, 113, 206, 0.3);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: #34d399;
+        text-shadow: 0 0 4px rgba(52, 211, 153, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      .products-section {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .products-section h2 {
+        font-size: 1.8rem;
+        color: #0f766e;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .product-card {
+        background: rgba(240, 255, 252, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid;
+        border_image: linear-gradient(45deg, #f472b6, #34d399) 1;
+        padding: 1rem;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 150px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-card h3 {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card button {
+        padding: 0.5rem 1rem;
+        background: linear-gradient(45deg, #db2777, #10b981);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .product-card button:hover {
+        background: linear-gradient(45deg, #10b981, #db2777);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .pagination button {
+        padding: 0.5rem 1rem;
+        background: #0d5c63;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .pagination button:hover {
+        background: #c026d3;
+      }
+
+      .pagination button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      .footer-content {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(90deg, #0d5c63, #c026d3, #f472b6);
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-links a:hover {
+        color: #34d399;
+        text-shadow: 0 0 4px rgba(52, 211, 153, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 0.8rem;
+          padding: 0.8rem;
+        }
+
+        .search-bar {
+          flex-direction: row;
+          margin: 0;
+          width: 100%;
+        }
+
+        .search-bar input {
+          border-radius: 20px 0 0 20px;
+          width: 100%;
+        }
+
+        .search-button {
+          border-radius: 0 20px 20px 0;
+        }
+
+        .nav-links {
+          flex-direction: row;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .background-arts svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-arts">
+      <!-- Shopping Cart Icon -->
+      <svg class="cart-icon" viewBox="0 0 24 24">
+        <path
+          d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 2h10l1.1 2H5.9L7 2zm-1 4h12l-1 10H6L5 6z"
+        />
+      </svg>
+      <!-- User Profile Icon -->
+      <svg class="user-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+      <!-- Chart Icon -->
+      <svg class="chart-icon" viewBox="0 0 24 24">
+        <path
+          d="M3 3h18v18H3V3zm4 14h2v-6H7v6zm4 0h2v-8h-2v8zm4 0h2v-4h-2v4z"
+        />
+      </svg>
+      <!-- Lock Icon -->
+      <svg class="lock-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-7h-1V8c0-2.76-2.24-5-5-5S7 5.24 7 8v2H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-6-5c1.66 0 3 1.34 3 3v2H9V8c0-1.66 1.34-3 3-3z"
+        />
+      </svg>
+    </div>
+
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="#">PremiumCorner</a></div>
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/products.html">Shop</a></li>
+          <li><a href="/cart.html">Cart</a></li>
+          <li><a href="/account.html">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="products-section">
+        <h2>Sports & Outdoors</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/yogaMat.webp" alt="Yoga Mat" />
+            </div>
+            <h3>Yoga Mat</h3>
+            <p>$29</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=41'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/bumbell.webp" alt="Dumbbells" />
+            </div>
+            <h3>Dumbbells</h3>
+            <p>$49</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=42'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/tennisRacket.jpg" alt="Tennis Racket" />
+            </div>
+            <h3>Tennis Racket</h3>
+            <p>$79</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=43'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/basketBall.jpg" alt="Basketball" />
+            </div>
+            <h3>Basketball</h3>
+            <p>$25</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=44'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/campingTent.webp" alt="Camping Tent" />
+            </div>
+            <h3>Camping Tent</h3>
+            <p>$99</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=45'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/sleepingBag.jpg" alt="Sleeping Bag" />
+            </div>
+            <h3>Sleeping Bag</h3>
+            <p>$59</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=46'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/hikingBoot.jpg" alt="Hiking Boots" />
+            </div>
+            <h3>Hiking Boots</h3>
+            <p>$89</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=47'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/helmet.jpg" alt="Bike Helmet" />
+            </div>
+            <h3>Bike Helmet</h3>
+            <p>$39</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=48'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/soccerBall.jpg" alt="Soccer Ball" />
+            </div>
+            <h3>Soccer Ball</h3>
+            <p>$22</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=49'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/jumperRope.jpg" alt="Jump Rope" />
+            </div>
+            <h3>Jump Rope</h3>
+            <p>$15</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=50'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Books</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/fictionNovel.webp" alt="Fiction Novel" />
+            </div>
+            <h3>Fiction Novel</h3>
+            <p>$15</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=51'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/selfHelpBook.webp" alt="Self-Help Book" />
+            </div>
+            <h3>Self-Help Book</h3>
+            <p>$20</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=52'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cookBook.jpg" alt="Cookbook" />
+            </div>
+            <h3>Cookbook</h3>
+            <p>$25</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=53'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/biography.jpg" alt="Biography" />
+            </div>
+            <h3>Biography</h3>
+            <p>$18</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=54'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/scienceBook.jpg" alt="Science Book" />
+            </div>
+            <h3>Science Book</h3>
+            <p>$30</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=55'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/historyBook.jpg" alt="History Book" />
+            </div>
+            <h3>History Book</h3>
+            <p>$22</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=56'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/childrenBook.avif" alt="Children's Book" />
+            </div>
+            <h3>Children's Book</h3>
+            <p>$12</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=57'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/mystryNovel.jpg" alt="Mystery Novel" />
+            </div>
+            <h3>Mystery Novel</h3>
+            <p>$17</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=58'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/fantacyNovel.webp" alt="Fantasy Novel" />
+            </div>
+            <h3>Fantasy Novel</h3>
+            <p>$19</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=59'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/poetryNovel.png" alt="Poetry Book" />
+            </div>
+            <h3>Poetry Book</h3>
+            <p>$14</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=60'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Toys & Games</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/boardgames.jpg" alt="Board Game" />
+            </div>
+            <h3>Board Game</h3>
+            <p>$29</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=61'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/puzzles.jpg" alt="Puzzle" />
+            </div>
+            <h3>Puzzle</h3>
+            <p>$15</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=62'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/actionfigure.webp" alt="Action Figure" />
+            </div>
+            <h3>Action Figure</h3>
+            <p>$19</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=63'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/doll.webp" alt="Doll" />
+            </div>
+            <h3>Doll</h3>
+            <p>$25</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=64'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/buildingBlocks.webp" alt="Building Blocks" />
+            </div>
+            <h3>Building Blocks</h3>
+            <p>$39</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=65'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/carToys.jpg" alt="Toy Car" />
+            </div>
+            <h3>Toy Car</h3>
+            <p>$12</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=66'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/stuffedToys.webp" alt="Stuffed Animal" />
+            </div>
+            <h3>Stuffed Animal</h3>
+            <p>$22</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=67'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cardGames.jpg" alt="Card Game" />
+            </div>
+            <h3>Card Game</h3>
+            <p>$10</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=68'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="/images/helicopter.webp"
+                alt="Remote Control Helicopter"
+              />
+            </div>
+            <h3>Remote Control Helicopter</h3>
+            <p>$49</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=69'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/kite.png" alt="Kite" />
+            </div>
+            <h3>Kite</h3>
+            <p>$15</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=70'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Groceries</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/basmati.jpeg" alt="Rice" />
+            </div>
+            <h3>Rice</h3>
+            <p>$10/5kg</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=71'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/pasta.jpg" alt="Pasta" />
+            </div>
+            <h3>Pasta</h3>
+            <p>$3/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=72'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/bread.jpg" alt="Bread" />
+            </div>
+            <h3>Bread</h3>
+            <p>$2/loaf</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=73'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/milk.jpg" alt="Milk" />
+            </div>
+            <h3>Milk</h3>
+            <p>$4/gallon</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=74'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/egg.webp" alt="Eggs" />
+            </div>
+            <h3>Eggs</h3>
+            <p>$3/dozen</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=75'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/butter.webp" alt="Butter" />
+            </div>
+            <h3>Butter</h3>
+            <p>$5/pound</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=76'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cheese.avif" alt="Cheese" />
+            </div>
+            <h3>Cheese</h3>
+            <p>$6/pound</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=77'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/apple.webp" alt="Apples" />
+            </div>
+            <h3>Apples</h3>
+            <p>$3/pound</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=78'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/banana.webp" alt="Bananas" />
+            </div>
+            <h3>Bananas</h3>
+            <p>$1/pound</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=79'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/orange.jpg" alt="Orange Juice" />
+            </div>
+            <h3>Orange Juice</h3>
+            <p>$4/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=80'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="pagination">
+        <button onclick="window.location.href='products.html'">
+          Previous Page
+        </button>
+        <button onclick="window.location.href='products-page3.html'">
+          Next Page
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer-content">
+      <p>© 2025 QuickCart. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>

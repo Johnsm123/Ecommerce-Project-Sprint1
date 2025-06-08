@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart - Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/index.html">PremiumCorner</a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for products, brands and more..." onkeyup="searchProducts()">
+                <button class="search-button">Search</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/products.html">Shop</a></li>
+                <li><a href="/cart.html">Cart</a></li>
+                <li><a href="/account.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="account">
+            <h1>Your Account</h1>
+            <div class="account-details">
+                <h2>Profile Information</h2>
+                <p><strong>Name:</strong> <span id="customerName"></span></p>
+                <p><strong>Email:</strong> <span id="customerEmail"></span></p>
+                <p><strong>Address:</strong> <span id="customerAddress"></span></p>
+                <h2>Order History</h2>
+                <div id="orderHistory"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 QuickCart. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

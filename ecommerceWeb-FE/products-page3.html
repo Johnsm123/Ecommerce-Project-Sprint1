@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PremiumCorner - Products Page 3</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #e9ecef 0%, #d4e8e2 100%);
+        position: relative;
+        animation: backgroundShift 10s infinite alternate ease-in-out;
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+      }
+
+      /* Custom scrollbar styling for WebKit browsers (Chrome, Safari) */
+      body::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      body::-webkit-scrollbar-track {
+        background: #e9ecef;
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #0d5c63, #c026d3);
+        border-radius: 5px;
+      }
+
+      body::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #c026d3, #0d5c63);
+      }
+
+      /* Custom scrollbar styling for Firefox */
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #0d5c63 #e9ecef;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(52, 211, 153, 0.2),
+          transparent 70%
+        );
+        z-index: 1;
+      }
+
+      @keyframes backgroundShift {
+        0% {
+          background: linear-gradient(135deg, #e9ecef 0%, #d4e8e2 100%);
+        }
+        100% {
+          background: linear-gradient(135deg, #d4e8e2 0%, #e9ecef 100%);
+        }
+      }
+
+      .background-arts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .background-arts svg {
+        position: absolute;
+        opacity: 0.2;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+      }
+
+      .cart-icon {
+        top: 10%;
+        left: 5%;
+        width: 50px;
+        height: 50px;
+        color: #0d5c63;
+        animation: float 6s infinite ease-in-out;
+      }
+
+      .user-icon {
+        top: 50%;
+        left: 10%;
+        width: 60px;
+        height: 60px;
+        color: #c026d3;
+        animation: float 8s infinite ease-in-out 1s;
+      }
+
+      .chart-icon {
+        top: 20%;
+        right: 5%;
+        width: 70px;
+        height: 70px;
+        color: #f472b6;
+        animation: float 7s infinite ease-in-out 0.5s;
+      }
+
+      .lock-icon {
+        top: 60%;
+        right: 10%;
+        width: 50px;
+        height: 50px;
+        color: #34d399;
+        animation: float 5s infinite ease-in-out 2s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        background: linear-gradient(90deg, #0d5c63, #c026d3);
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 3px solid;
+        border-image: linear-gradient(45deg, #f472b6, #34d399) 1;
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo a {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0;
+        flex-grow: 1;
+        max-width: 500px;
+        margin: 0 1rem;
+      }
+
+      .search-bar input {
+        flex-grow: 1;
+        padding: 0.6rem 1rem;
+        border-radius: 20px 0 0 20px;
+        border: none;
+        font-size: 1rem;
+        background: white;
+        color: #666;
+      }
+
+      .search-button {
+        padding: 0.6rem 1.5rem;
+        background-color: #f472b6;
+        color: white;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+
+      .search-button:hover {
+        background: linear-gradient(45deg, #f472b6, #db2777);
+        box-shadow: 0 0 8px rgba(244, 114, 182, 0.5),
+          0 0 8px rgba(0, 113, 206, 0.3);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: #34d399;
+        text-shadow: 0 0 4px rgba(52, 211, 153, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      .products-section {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .products-section h2 {
+        font-size: 1.8rem;
+        color: #0f766e;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .product-card {
+        background: rgba(240, 255, 252, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid;
+        border-image: linear-gradient(45deg, #f472b6, #34d399) 1;
+        padding: 1rem;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 150px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-card h3 {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card button {
+        padding: 0.5rem 1rem;
+        background: linear-gradient(45deg, #db2777, #10b981);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .product-card button:hover {
+        background: linear-gradient(45deg, #10b981, #db2777);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .pagination button {
+        padding: 0.5rem 1rem;
+        background: #0d5c63;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .pagination button:hover {
+        background: #c026d3;
+      }
+
+      .pagination button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      .footer-content {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(90deg, #0d5c63, #c026d3, #f472b6);
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-links a:hover {
+        color: #34d399;
+        text-shadow: 0 0 4px rgba(52, 211, 153, 0.5),
+          0 0 4px rgba(0, 113, 206, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 0.8rem;
+          padding: 0.8rem;
+        }
+
+        .search-bar {
+          flex-direction: row;
+          margin: 0;
+          width: 100%;
+        }
+
+        .search-bar input {
+          border-radius: 20px 0 0 20px;
+          width: 100%;
+        }
+
+        .search-button {
+          border-radius: 0 20px 20px 0;
+        }
+
+        .nav-links {
+          flex-direction: row;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .background-arts svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-arts">
+      <!-- Shopping Cart Icon -->
+      <svg class="cart-icon" viewBox="0 0 24 24">
+        <path
+          d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 2h10l1.1 2H5.9L7 2zm-1 4h12l-1 10H6L5 6z"
+        />
+      </svg>
+      <!-- User Profile Icon -->
+      <svg class="user-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+        />
+      </svg>
+      <!-- Chart Icon -->
+      <svg class="chart-icon" viewBox="0 0 24 24">
+        <path
+          d="M3 3h18v18H3V3zm4 14h2v-6H7v6zm4 0h2v-8h-2v8zm4 0h2v-4h-2v4z"
+        />
+      </svg>
+      <!-- Lock Icon -->
+      <svg class="lock-icon" viewBox="0 0 24 24">
+        <path
+          d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-7h-1V8c0-2.76-2.24-5-5-5S7 5.24 7 8v2H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-6-5c1.66 0 3 1.34 3 3v2H9V8c0-1.66 1.34-3 3-3z"
+        />
+      </svg>
+    </div>
+
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="#">PremiumCorner</a></div>
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/products.html">Shop</a></li>
+          <li><a href="/cart.html">Cart</a></li>
+          <li><a href="/account.html">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="products-section">
+        <h2>Canned Goods</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cannedTomato.webp" alt="Canned Tomatoes" />
+            </div>
+            <h3>Canned Tomatoes</h3>
+            <p>$1.49/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=81'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cannedBeans.jpg" alt="Canned Beans" />
+            </div>
+            <h3>Canned Beans</h3>
+            <p>$1.29/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=82'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cannedcorns.jpg" alt="Canned Corn" />
+            </div>
+            <h3>Canned Corn</h3>
+            <p>$1.19/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=83'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/tuna.jpeg" alt="Canned Tuna" />
+            </div>
+            <h3>Canned Tuna</h3>
+            <p>$2.49/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=84'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/peaches.webp" alt="Canned Peaches" />
+            </div>
+            <h3>Canned Peaches</h3>
+            <p>$1.99/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=85'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/soup.jpg" alt="Canned Soup" />
+            </div>
+            <h3>Canned Soup</h3>
+            <p>$2.29/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=86'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/chickpeas.jpg" alt="Canned Chickpeas" />
+            </div>
+            <h3>Canned Chickpeas</h3>
+            <p>$1.39/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=87'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/cannedPinnapple.jpg" alt="Canned Pineapple" />
+            </div>
+            <h3>Canned Pineapple</h3>
+            <p>$1.79/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=88'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/olives.avif" alt="Canned Olives" />
+            </div>
+            <h3>Canned Olives</h3>
+            <p>$2.99/jar</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=89'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/sardine.jpg" alt="Canned Sardines" />
+            </div>
+            <h3>Canned Sardines</h3>
+            <p>$2.69/can</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=90'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Condiments & Sauces</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/ketchup.webp" alt="Ketchup" />
+            </div>
+            <h3>Ketchup</h3>
+            <p>$2.49/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=91'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/mustard.webp" alt="Mustard" />
+            </div>
+            <h3>Mustard</h3>
+            <p>$1.99/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=92'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/soesauce.webp" alt="Soy Sauce" />
+            </div>
+            <h3>Soy Sauce</h3>
+            <p>$3.49/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=93'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/hotsauce.webp" alt="Hot Sauce" />
+            </div>
+            <h3>Hot Sauce</h3>
+            <p>$2.99/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=94'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/miomice.webp" alt="Mayonnaise" />
+            </div>
+            <h3>Mayonnaise</h3>
+            <p>$3.99/jar</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=95'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="images/bbqSauce.jpg" alt="BBQ Sauce" />
+            </div>
+            <h3>BBQ Sauce</h3>
+            <p>$2.79/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=96'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/oliveOil.webp" alt="Olive Oil" />
+            </div>
+            <h3>Olive Oil</h3>
+            <p>$6.99/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=97'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/vineger.webp" alt="Vinegar" />
+            </div>
+            <h3>Vinegar</h3>
+            <p>$2.29/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=98'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/honeyMusturd.jpg" alt="Honey Mustard" />
+            </div>
+            <h3>Honey Mustard</h3>
+            <p>$2.49/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=99'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/teriyaki.jpg" alt="Teriyaki Sauce" />
+            </div>
+            <h3>Teriyaki Sauce</h3>
+            <p>$3.29/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=100'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Frozen Foods</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenPizza.webp" alt="Frozen Pizza" />
+            </div>
+            <h3>Frozen Pizza</h3>
+            <p>$5.99/each</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=101'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenpea.jpg" alt="Frozen Peas" />
+            </div>
+            <h3>Frozen Peas</h3>
+            <p>$2.49/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=102'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/icecream.jpg" alt="Ice Cream" />
+            </div>
+            <h3>Ice Cream</h3>
+            <p>$4.99/tub</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=103'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenberries.webp" alt="Frozen Berries" />
+            </div>
+            <h3>Frozen Berries</h3>
+            <p>$3.99/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=104'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/chickenNuggets.jpg" alt="Chicken Nuggets" />
+            </div>
+            <h3>Chicken Nuggets</h3>
+            <p>$6.49/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=105'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenSpinash.jpg" alt="Frozen Spinach" />
+            </div>
+            <h3>Frozen Spinach</h3>
+            <p>$2.29/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=106'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenfries.jpg" alt="Frozen Fries" />
+            </div>
+            <h3>Frozen Fries</h3>
+            <p>$3.49/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=107'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenWaffle.jpg" alt="Frozen Waffles" />
+            </div>
+            <h3>Frozen Waffles</h3>
+            <p>$3.99/box</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=108'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenShrimp.webp" alt="Frozen Shrimp" />
+            </div>
+            <h3>Frozen Shrimp</h3>
+            <p>$9.99/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=109'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/frozenBrocolli.jpg" alt="Frozen Broccoli" />
+            </div>
+            <h3>Frozen Broccoli</h3>
+            <p>$2.49/bag</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=110'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <h2>Household Items</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/paperTowel.avif" alt="Paper Towels" />
+            </div>
+            <h3>Paper Towels</h3>
+            <p>$3.99/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=111'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/dishsoap.webp" alt="Dish Soap" />
+            </div>
+            <h3>Dish Soap</h3>
+            <p>$2.49/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=112'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="/images/laundrydetergent.webp"
+                alt="Laundry Detergent"
+              />
+            </div>
+            <h3>Laundry Detergent</h3>
+            <p>$6.99/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=113'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/trashBag.jpg" alt="Trash Bags" />
+            </div>
+            <h3>Trash Bags</h3>
+            <p>$4.99/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=114'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/toiletpaper.webp" alt="Toilet Paper" />
+            </div>
+            <h3>Toilet Paper</h3>
+            <p>$5.99/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=115'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img
+                src="/images/allpurposecleaner.webp"
+                alt="All-Purpose Cleaner"
+              />
+            </div>
+            <h3>All-Purpose Cleaner</h3>
+            <p>$3.49/bottle</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=116'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/sponges.jpg" alt="Sponges" />
+            </div>
+            <h3>Sponges</h3>
+            <p>$2.99/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=117'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/foil.jpeg" alt="Aluminum Foil" />
+            </div>
+            <h3>Aluminum Foil</h3>
+            <p>$3.29/roll</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=118'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/plasticroll.jpg" alt="Plastic Wrap" />
+            </div>
+            <h3>Plastic Wrap</h3>
+            <p>$2.99/roll</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=119'"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="product-card">
+            <div class="product-image">
+              <img src="/images/zipbag.webp" alt="Ziplock Bags" />
+            </div>
+            <h3>Ziplock Bags</h3>
+            <p>$3.49/pack</p>
+            <button
+              onclick="window.location.href='product-detail.html?product=120'"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="pagination">
+        <button onclick="window.location.href='products-page2.html'">
+          Previous Page
+        </button>
+        <button disabled>Next Page</button>
+      </div>
+    </main>
+
+    <footer class="footer-content">
+      <p>© 2025 QuickCart. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
